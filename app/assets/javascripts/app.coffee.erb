@@ -1,0 +1,19 @@
+supermoo = angular.module('supermoo',[
+  'templates',
+  'ngRoute',
+  'controllers',
+])
+
+supermoo.config([ '$routeProvider',
+  ($routeProvider)->
+    $routeProvider
+      .when('/',
+        templateUrl: "<%= asset_path 'index.html' %>"
+        controller: 'SuperMOOController'
+      )
+])
+
+controllers = angular.module('controllers',[])
+controllers.controller("SuperMOOController", [ '$scope',
+  ($scope)->
+])

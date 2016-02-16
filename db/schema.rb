@@ -11,6 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160215161147) do
+
+  create_table "destinations", force: :cascade do |t|
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "directions", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "origin_id"
+    t.integer  "destination_id"
+  end
+
+  add_index "directions", ["destination_id"], name: "index_directions_on_destination_id"
+  add_index "directions", ["origin_id"], name: "index_directions_on_origin_id"
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "origins", force: :cascade do |t|
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end

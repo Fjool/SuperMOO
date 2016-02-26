@@ -15,6 +15,23 @@ RSpec.describe World do
       expect(game).to have_received(:done)
     end
 
+    it "adds an actor when requested" do
+      @actor = instance_spy("Actor")
+      @world.add_actor(@actor)
+      expect(@world.actors.length).to eq(1)
+    end
+
+    it "removes an actor when requested" do
+      @actor1 = instance_spy("Actor")
+      @actor2 = instance_spy("Actor")
+      
+      @world.add_actor(@actor1)
+      @world.add_actor(@actor2)
+      
+      @world.remove_actor(@actor1)
+      expect(@world.actors).to eq([@actor2])
+    end
+      
     it "responds to tick commands and forwards them to actors" do
       @actor = instance_spy("Actor")
       @world.add_actor(@actor)
